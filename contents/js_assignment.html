@@ -46,6 +46,47 @@
 
 
     <h3>Your solution for assignment</h3>
+    <input id="taskInput" type="text" placeholder="Enter new task">
+  <button onclick="addTask()">Add</button>
+  <button onclick="clearTodos()">Clear all todos</button>
+
+  <ul id="todoList"></ul>
+
+  <script>
+    function addTask() {
+      let input = document.getElementById("taskInput");
+      let text = input.value.trim();
+      if (text === "") return;
+
+      let li = document.createElement("li");
+
+      let span = document.createElement("span");
+      span.textContent = " " + text;
+
+      let checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.addEventListener("change", function () {
+        if (this.checked) {
+          span.style.textDecoration = "line-through";
+          span.style.color = "gray";
+        } else {
+          span.style.textDecoration = "none";
+          span.style.color = "black";
+        }
+      });
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+      document.getElementById("todoList").appendChild(li);
+
+      input.value = ""; 
+    }
+
+    function clearTodos() {
+      document.getElementById("todoList").innerHTML = "";
+    }
+  </script>
+
 
 </body>
 
